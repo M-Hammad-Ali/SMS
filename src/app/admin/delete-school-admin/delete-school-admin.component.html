@@ -1,0 +1,32 @@
+<div class="container">
+  <form class="mt-5"
+    [formGroup] = 'deleteSchoolAdminForm'
+    (ngSubmit) = 'deleteSchoolAdmin()'
+  >
+    <div class="form-group">
+      <label>Enter the Id of School Admin to be deleted:</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Enter Id"
+        formControlName= 'id'
+        [ngClass] = "{'is-invalid':(
+                                    (deleteSchoolAdminForm.touched || deleteSchoolAdminForm.dirty)
+                                    && !deleteSchoolAdminForm.valid
+                                    )}"
+        >
+        <span class="invalid-feedback">
+          <span *ngIf = "deleteSchoolAdminForm.get('id').hasError">
+            Please Enter the School Admin Id
+          </span>
+        </span>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled] = '!deleteSchoolAdminForm.valid'
+    >
+      Delete
+    </button>
+  </form>
+</div>

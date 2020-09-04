@@ -1,0 +1,83 @@
+<div class="container">
+  <form
+    class="mt-5"
+    [formGroup] = 'addStudentForm'
+    (ngSubmit) = 'addStudent()'
+  >
+    <div class="form-group">
+      <label>First Name</label>
+      <input
+        class="form-control"
+        placeholder="Enter First Name"
+        formControlName = 'firstName'
+        [ngClass] = "{'is-invalid': ((addStudentForm.get('firstName').touched ||
+                                      addStudentForm.get('firstName').dirty)
+                                      && !addStudentForm.get('firstName').valid
+                                      )}"
+        >
+        <span class="invalid-feedback">
+          <span *ngIf = "addStudentForm.get('firstName').hasError('required')">
+            Please Enter the First Name
+          </span>
+        </span>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input
+        class="form-control"
+        placeholder="Enter Last Name"
+        formControlName = 'lastName'
+        [ngClass] = "{'is-invalid': ((addStudentForm.get('lastName').touched ||
+                                      addStudentForm.get('lastName').dirty)
+                                      && !addStudentForm.get('lastName').valid
+                                      )}"
+        >
+        <span class="invalid-feedback">
+          <span *ngIf = "addStudentForm.get('lastName').hasError('required')">
+            Please Enter the Last Name
+          </span>
+        </span>
+    </div>
+    <div class="form-group">
+      <label>Father Name</label>
+      <input
+        class="form-control"
+        placeholder="Enter Father Name"
+        formControlName = 'fatherName'
+        [ngClass] = "{'is-invalid': ((addStudentForm.get('fatherName').touched ||
+                                      addStudentForm.get('fatherName').dirty)
+                                      && !addStudentForm.get('fatherName').valid
+                                      )}"
+        >
+        <span class="invalid-feedback">
+          <span *ngIf = "addStudentForm.get('fatherName').hasError('required')">
+            Please Enter the Father Name
+          </span>
+        </span>
+    </div>
+    <div class="form-group">
+      <label>Contact No</label>
+      <input
+        class="form-control"
+        placeholder="Enter Contact No"
+        formControlName = 'contactNo'
+        [ngClass] = "{'is-invalid': ((addStudentForm.get('contactNo').touched ||
+                                      addStudentForm.get('contactNo').dirty)
+                                      && !addStudentForm.get('contactNo').valid
+                                      )}"
+        >
+        <span class="invalid-feedback">
+          <span *ngIf = "addStudentForm.get('contactNo').hasError('required')">
+            Please Enter the Contact No
+          </span>
+        </span>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled] = '!addStudentForm.valid'
+    >
+      Submit
+    </button>
+  </form>
+</div>

@@ -1,0 +1,44 @@
+<h3>Assign Teacher to Class</h3>
+      <div class="card">
+        <div class="card-body">
+          <form
+            [formGroup] = 'assignTeacherForm'
+            (ngSubmit) = 'assignTeacherToClass()'
+            >
+            <div class="form-group">
+              <label>Enter Teacher ID</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Teacher ID"
+                formControlName = 'teacherId'
+                [ngClass] = "{'is-invalid': ( (assignTeacherForm.get('teacherId').touched||
+                                              assignTeacherForm.get('teacherId').dirty )&&
+                                              !assignTeacherForm.get('teacherId').valid
+                )}"
+                >
+                <span class="invalid-feedback">
+                  <span *ngIf = "!assignTeacherForm.get('teacherId').valid">
+                    Please Enter Teacher Id
+                  </span>
+                </span>
+            </div>
+            <div class="form-group">
+              <label>Select Class</label>
+              <select
+                class="form-control"
+                formControlName = 'className'
+                >
+                  <option value="" disabled selected hidden>Choose a Class</option>
+                  <option *ngFor = "let class of classList">{{class.class_name}}</option>
+              </select>
+            </div>
+            <button
+              class="btn btn-primary"
+              [disabled] = '!assignTeacherForm.valid'
+              >
+              Assign Teacher
+            </button>
+          </form>
+        </div>
+      </div>

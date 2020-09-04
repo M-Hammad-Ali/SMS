@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <div class="card w-75 m-3" *ngFor = 'let class of classList'>
+        <div class="card-body">
+          <h5 class="card-title">Class ID: {{class.id}}</h5>
+          <p class="card-text">{{class.class_name}}</p>
+          <a class="btn btn-primary mr-2" [routerLink] = "['/student/',class.id,'List']">View Student List</a>
+          <a class="btn btn-primary mr-2" [routerLink]="['/subject/',class.id,'List']">View Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card mt-3" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <button class="btn btn-primary m-2" routerLink="/class/addClass">Add Class</button>
+            <button class="btn btn-primary m-2" routerLink="/class/deleteClass">Delete Class</button>
+          </li>
+        </ul>
+      </div>
+      <div class="card mt-3" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <button class="btn btn-primary m-2" routerLink="/teacher/List">View All Teacher</button>
+            <button class="btn btn-primary m-2" routerLink="/teacher/addNewTeacher">Add New Teacher</button>
+            <button class="btn btn-primary m-2" routerLink="/teacher/removeTeacher">Remove Teacher</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

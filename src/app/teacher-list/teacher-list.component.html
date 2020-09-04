@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card-group">
+        <div class="card border-dark mb-3 mt-5" style="max-width: 18rem;" *ngFor = 'let teacher of teacherList'>
+          <div class="card-header">Teacher id: {{teacher.id}}</div>
+          <div class="card-body text-dark">
+            <h5 class="card-title">{{teacher.first_name}} {{teacher.last_name}}</h5>
+            <p class="card-text">Email id: {{teacher.email_id}}</p>
+            <p class="card-text">Contact No: {{teacher.contact_no}}</p>
+            <p class="card-text">Qualification: {{teacher.qualification}}</p>
+            <p class="card-text">Experience: {{teacher.experience}}years</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card mt-5" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <button class="btn btn-primary m-2" routerLink="/teacher/List">All Teachers List</button>
+            <button class="btn btn-primary m-2" routerLink="">Delete Class</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

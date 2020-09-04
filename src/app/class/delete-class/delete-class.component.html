@@ -1,0 +1,32 @@
+<div class="container">
+  <form class="mt-5"
+    [formGroup]='deleteClassForm'
+    (ngSubmit) = 'deleteClass()'
+    >
+    <div class="form-group">
+      <label>Enter the id of class: </label>
+      <input
+        type="email"
+        class="form-control"
+        formControlName = 'classId'
+        placeholder="Enter id"
+        [ngClass] = "{'is-invalid': ((deleteClassForm.get('classId').touched ||
+                                    deleteClassForm.get('classId').dirty) &&
+                                    ! deleteClassForm.get('classId').valid)
+                                  }"
+        >
+        <span class="invalid-feedback">
+          <span *ngIf= "deleteClassForm.get('classId').hasError">
+            Please Enter the Class Id
+          </span>
+        </span>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]= '!deleteClassForm.valid'
+    >
+      Submit
+    </button>
+  </form>
+</div>

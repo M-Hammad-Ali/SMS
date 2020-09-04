@@ -1,0 +1,32 @@
+<div class="container">
+  <form class="mt-5"
+    [formGroup] = 'createClassForm'
+    (ngSubmit) = 'createClass()'
+    >
+    <div class="form-group">
+      <label>Class Name</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Class Name"
+        formControlName = 'className'
+        [ngClass] = "{'is-invalid':(createClassForm.get('className').touched ||
+                                      createClassForm.get('className').dirty) &&
+                                      !createClassForm.get('className').valid
+                                    }"
+        >
+        <span class="invalid-feedback">
+          <span *ngIf = '!createClassForm.valid'>
+            Please Enter the Name of Class
+          </span>
+        </span>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled] = '!createClassForm.valid'
+    >
+      Submit
+    </button>
+  </form>
+</div>

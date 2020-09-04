@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <div class="card-group mt-5">
+        <div class="card" *ngFor = 'let student of studentList'>
+          <div class="card-body">
+            <h5 class="card-title">{{student.first_name}} {{student.last_name}}</h5>
+            <p class="card-text">Father Name: {{student.father_name}}</p>
+            <p class="card-text">Contact No: {{student.contact_no}}</p>
+          </div>
+          <div class="card-footer">
+            <h5 class="text-muted">Student id: {{student.id}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 mt-5">
+      <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <button class="btn btn-primary m-2" routerLink="/student/addStudent">Add Student</button>
+            <button class="btn btn-primary m-2" routerLink="/student/removeStudent">Remove Student</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

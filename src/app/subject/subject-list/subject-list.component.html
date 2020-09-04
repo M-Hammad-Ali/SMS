@@ -1,0 +1,98 @@
+<div class="container">
+  <table class="table mt-5">
+    <tbody>
+      <tr *ngFor = 'let subject of subjectList'>
+        <th scope="row">ID: {{subject.subject_id}}</th>
+        <td>{{subject.subject_name}}</td>
+        <td (click) = "openTeacherModal(teacherModal,subject.teachers_id)"><button type="button" class="btn btn-outline-info">{{subject.first_name}} {{subject.last_name}}</button></td>
+        <td *ngIf= 'subject.first_name == null'><button class="btn btn-primary" (click)="open(content,subject)">Assign Teacher</button></td>
+        <td *ngIf= 'subject.first_name != null'><button class="btn btn-primary" (click)="open(content,subject)">Change Teacher</button></td>
+        <td><button class="btn btn-primary">Exam</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal  -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4>Assign Teacher</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form
+      [formGroup]= 'assignTeacherForm'
+      (ngSubmit) = 'saveTeacher()'
+      >
+      <div class="form-group">
+        <label>Subject Id</label>
+        <input type="email" class="form-control"
+          formControlName = 'subjectId'
+          readonly
+        >
+      </div>
+      <div class="form-group">
+        <label>Subject Name</label>
+        <input type="text" class="form-control"
+        formControlName = 'subjectName'
+        readonly
+        >
+      </div>
+      <div class="form-group">
+        <label>Assigned Teacher</label>
+        <input type="text" class="form-control"
+          formControlName = 'assignedTeacher'
+          readonly
+          *ngIf = "assignTeacherForm.get('assignedTeacher').value != 0 "
+        >
+        <div
+          class="alert alert-danger" role="alert"
+          *ngIf = "assignTeacherForm.get('assignedTeacher').value == 0"
+          >
+          No Teacher Has Been Assigned
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Select Teacher</label>
+        <select
+          class="form-control"
+          formControlName = 'assignNewTeacher'
+          (change) = 'onClick($event.target.value)'
+          >
+            <option value="" default disabled selected hidden>Choose a Teacher</option>
+            <option *ngFor = 'let teacher of teacherList' value="{{teacher.id}}">{{teacher.first_name}} {{teacher.last_name}} {{teacher.qualification}}</option>
+        </select>
+      </div>
+      <button type ="submit"
+        class="btn btn-primary mr-3"
+        [disabled] = "assignTeacherForm.get('assignNewTeacher').hasError('required')"
+        >
+        Save Teacher
+      </button>
+      <button type="button"
+              class="btn btn-secondary ml-3"
+              (click)="modal.close('Save click')"
+      >
+        Close
+      </button>
+    </form>
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</ng-template>
+
+<ng-template #teacherModal let-modal>
+  <div class="modal-header">
+    <h4>Assign Teacher</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-teacher-details [teacherId] = 'selectedTeacherId' [teachersList] = 'allTeacherList'></app-teacher-details>
+  </div>
+</ng-template>
